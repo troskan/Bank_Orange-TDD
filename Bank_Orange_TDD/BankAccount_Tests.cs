@@ -24,6 +24,43 @@ namespace Bank_Orange_TDD
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CurrencyConvertFromSek_ConvertsToEuroCorrectly()
+        {
+            //Arrange
+            var acc = new BankAccount();
+
+            string currency = "€";
+            decimal money = 1000.0m;
+
+
+            //Act
+            decimal expected = money / acc.currencyExchanges.EuroCurrencyRate;
+            decimal actual = acc.CurrencyConvertFromSek(currency, money);
+            
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        } 
+        [TestMethod]
+        public void CurrencyConvertFromSek_DecimalValueShouldBeLessAfterConvert()
+        {
+            //Arrange
+            var acc = new BankAccount();
+
+            string currency = "€";
+            decimal money = 1000.0m;
+
+
+            //Act
+            decimal actual = acc.CurrencyConvertFromSek(currency, money);
+            bool expected = actual < money;
+
+
+
+            //Assert
+            Assert.IsTrue(expected);
+        }
         //[TestMethod]
         //public void TransferMoneyInUser_ZeroAmount_ReturnsInvalidNumberMessage()
         //{
