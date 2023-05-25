@@ -12,20 +12,20 @@ namespace Bank_Orange
         PendingTransactions pendingTransactions;
 
         //A queue with transactions
-        Queue<PendingTransactions> pendingTransactionsQueue = new Queue<PendingTransactions>(); 
+        readonly Queue<PendingTransactions> pendingTransactionsQueue = new Queue<PendingTransactions>(); 
 
         //For saving the exchangerate
         CurrencyExchanges currencyExchanges;
 
         //For saving the users index.
-        int InLoggedUserIndex;
+        public int InLoggedUserIndex;
 
         //For saving the users account.
-        BankAccount InLoggedUserAccount;
+       public BankAccount InLoggedUserAccount;
 
         //Dictionaries of users and users accounts where the key keeps them together.
-        private Dictionary<int, Person> PersonDictionary = new Dictionary<int, Person>();
-        private Dictionary<int, BankAccount> AccountDictionary = new Dictionary<int, BankAccount>();
+        public Dictionary<int, Person> PersonDictionary = new Dictionary<int, Person>();
+        public Dictionary<int, BankAccount> AccountDictionary = new Dictionary<int, BankAccount>();
 
         //method that repeteadly checks calls EmptyQueue so that the queue will empty at the correct time
         public void CheckTime()
@@ -50,7 +50,6 @@ namespace Bank_Orange
             {
                 if (Attempts < 3)
                 {
-                    Console.Clear();
                     Console.Write($"" +
                         $"\n\t,-----.                  ,--.         ,-----.                                       " +
                         $"\n\t|  |) /_  ,--,--.,--,--, |  |,-.     '  .-.  ',--.--. ,--,--.,--,--,  ,---.  ,---.  " +
@@ -75,18 +74,19 @@ namespace Bank_Orange
                             GetUserAccount();
                             if (item.Value.IsAdmin == true)
                             {
-                                AdminMenu();
+                                //AdminMenu();
                             }
                             else
                             {
-                                CustomerMenu();
+                                Console.WriteLine("Successfully logged in!");
+                                //CustomerMenu();
                             }
                         }
                     }
                 }
                 else
                 {
-                    Environment.Exit(0);
+                    //Environment.Exit(0);
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace Bank_Orange
         //Creates a customer profile with input from the admin.
         public void CreateUserAccount()
         {
-            Console.Clear();
+            /*Console.Clear*/
 
             Console.Write("\n\tName: ");
             string name = Console.ReadLine();
@@ -159,7 +159,6 @@ namespace Bank_Orange
         //Menu for customer users.
         public void CustomerMenu()
         {
-            Console.Clear();
             Console.Write($"" +
                 $"\n\t   ______________________________" +
                 $"\n\t / \\                             \\." +
@@ -225,6 +224,9 @@ namespace Bank_Orange
                 case 8:
                     Login();
                     break;
+                    case 9:
+                        Environment.Exit(1);
+                    break;
                 default:
                     CustomerMenu();
                     break;
@@ -234,7 +236,6 @@ namespace Bank_Orange
         //Menu for admin users.
         public void AdminMenu()
         {
-            Console.Clear();
             //Console.Write("\n\t[1]Create account" +
             //    "\n\t[2]Change currency rate" +
             //    "\n\t[3]Logout" +
@@ -275,12 +276,16 @@ namespace Bank_Orange
                     CreateUserAccount();
                     break;
                 case 2:
-                    Console.Clear();
+                    /*Console.Clear*/
                     ChangeExchageRate();
                     break;
                 case 3:
                     Login();
                     break;
+                    case 4:
+                    Environment.Exit(1);
+                    break;
+
                 default:
                     AdminMenu();
                     break;
@@ -333,7 +338,7 @@ namespace Bank_Orange
         //A user can only borrow from the bank once and a maximum of 5x their money
         public void BorrowMoney()
         {
-            Console.Clear();
+            /*Console.Clear*/
             Console.Write("\n\tHow much money would you like to borrow?" +
                 $"\n\tMax amount to borrow is {BankAccount.CurrencyFormat(InLoggedUserAccount.TotalMoney() * 5)} Kr" +
                 $"\n\t: ");

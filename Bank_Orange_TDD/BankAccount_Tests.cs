@@ -207,7 +207,11 @@ namespace Bank_Orange_TDD
             var output = consoleOutput.ToString();
 
             // Assert
-            Assert.IsTrue(bankAccount.BankAccountList.Contains(bankAccount.BankAccountList.FirstOrDefault(a => a.Money == 20)));
+            Assert.IsTrue(bankAccount.BankAccountList
+                
+                .Contains(bankAccount.BankAccountList
+                .FirstOrDefault(a => a.Money == 20)));
+
             Assert.IsTrue(output.Contains("Transaction has been successful."));
         }
     }
