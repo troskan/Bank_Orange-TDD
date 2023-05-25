@@ -14,7 +14,7 @@ namespace Bank_Orange
             set { accountName = value; }
         }
 
-        private decimal money;
+        public decimal money;
         public decimal Money
         {
             get { return money; }

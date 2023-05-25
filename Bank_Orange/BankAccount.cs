@@ -14,7 +14,7 @@ namespace Bank_Orange
         public bool CanTakeLoan = true;
 
         //A list of account details.
-        private List<AccountDetails> BankAccountList = new List<AccountDetails>();
+        public List<AccountDetails> BankAccountList = new List<AccountDetails>();
 
         private List<string> LogList = new List<string>();
 
@@ -104,7 +104,7 @@ namespace Bank_Orange
         //Creates a new account with specific name and currency.
         public void AddNewBankAccount()
         {
-            Console.Clear();
+            //Console.Clear();
             bool currencyPosition;
 
             Console.Write($"\n\tDo you want this to be an savings account or deposit account?" +
@@ -172,6 +172,7 @@ namespace Bank_Orange
 
             string Log = $"{DateTime.Now}: You created an account named {accountName} and deposited {CurrencyFormat(money)} in {currency}";
             LogList.Add(Log);
+            Console.WriteLine("Successfully added bank account.");
         }
 
         //Converts currencies from sek to dollar/euro when a account is created.
@@ -243,14 +244,12 @@ namespace Bank_Orange
                 if (money == 0)
                 {
                     Console.Write("\n\tPlease enter a valid number.");
-                    Console.ReadLine();
                 }
                 else if(money < 0)
                 {
                     money = 0;
                     
                     Console.Write("\n\tCan not send a negative amount.");
-                    Console.ReadLine();
                 }
                 else if (money <= withdrawlAccount.Money)
                 {
@@ -263,18 +262,15 @@ namespace Bank_Orange
                     string log = $"{DateTime.Now}: You transfered {CurrencyFormat(money)} in {withdrawlAccount.CurrencyType} from {withdrawlAccount.AccountName} " +
                         $"to {depossitAccount.AccountName}";
                     LogList.Add(log);
-                    Console.ReadLine();
                 }
                 else
                 {
                     Console.Write($"\n\tInsufficent funds.");
-                    Console.ReadLine();
                 }
             }
             catch (Exception)
             {
                 Console.Write($"\n\tOne of the accounts you are trying to access does not exist.");
-                Console.ReadKey();
             }
         }
 
