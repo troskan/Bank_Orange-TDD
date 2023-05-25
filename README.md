@@ -48,7 +48,19 @@ CurrencyConvert - Lets the user convert currency and sets the correct "Amount".
 
 TrasferMoneyinUser - Lets the user transfer money between its own accounts.
 
+# Test-Driven-Development
+## Focused areas in the code for testing:
+**Login System**
 
+Possible login malfunction while adding new code to the code base.
+
+**Currency Conversion**
+
+Making sure at all times that user is getting the correct currency conversion to not loose any money.
+
+**Transferring Money**
+
+Making sure that transferring money is working correctly at all times.
 
 ### Summary 
 The application is built using Object oriented programming, we try basing most aspects of the app around that. We use Dictionarys and lists to lists to structure and save the users and their different accounts. The reason we choose Dictionarys instead of regular lists in some cases is to have an easy point of reference that a Dictionary provides with it's key/value structure. 
